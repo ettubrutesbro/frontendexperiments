@@ -50,7 +50,7 @@
       //place the renderer(canvas) within DOM element (div)
       container = document.createElement("div")
       document.body.appendChild(container)
-      container.id = "container"
+      container.id = "containerSESEME"
       renderer = new THREE.WebGLRenderer()
       renderer.setSize( window.innerWidth, window.innerHeight )
       container.appendChild( renderer.domElement )
@@ -117,7 +117,7 @@
       seseme.add(pillargroup)
       scene.add (seseme)
 
-      updateValues(1,0,0)
+      updateValues(1,10,100)
       updateValues(2,0,0)
       updateValues(3,0,0)
       updateValues(4,0,0)
@@ -158,7 +158,7 @@
         renderer.render( scene, camera )
         
         //DEBUG functions
-        seseme.rotation.y += 0.01
+        //seseme.rotation.y += 0.01
         // if(intersects.length > 0){ //intersection diagnostic: what's in front?
         //   console.log(intersects[0].object.name)
         // }
