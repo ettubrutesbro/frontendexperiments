@@ -18,10 +18,10 @@
       <div class = "container">
    
         <div id = "nav" class = "row">
-          <div class = "three columns">VIEW</div>
-          <div class = "three columns">TALK</div>
-          <div class = "three columns">DATA</div>
-          <div class = "three columns">HELP</div>
+          <div id = "viewnav" class = "three columns">VIEW</div>
+          <div id = "talknav" class = "three columns">TALK</div>
+          <div id = "datanav" class = "three columns">DATA</div>
+          <div id = "helpnav" class = "three columns">HELP</div>
         </div>
       </div>
     </div>
@@ -34,49 +34,56 @@
         TITLES / HIGHLIGHT NAME
         </div>
 
-        <div id = "select" class = "row">
-          <div class = "two columns">w</div>
-          <div class = "five columns">300</div>
-          <div class = "three columns">EUI</div>
-          <div class = "two columns">w</div>
-        </div>
+        <section id = "view"> <!-- detailed view -->
+          <div id = "select" class = "row">
+            <div class = "two columns">w</div>
+            <div class = "five columns">300</div>
+            <div class = "three columns">EUI</div>
+            <div class = "two columns">w</div>
+          </div>
+        </section>
 
-        <div id = "dataCompare" class = "data row">
-          <div class = "one column">a</div>
-          <div class = "two columns">COMPARE</div>
-          <div class = "three columns">building</div>
-          <div class = "three columns">uc davis</div>
-          <div class = "three columns">california</div>
-        </div>
+        <section id = "talk">
+        </section>
 
-        <div id = "dataResource" class = "data row">
-          <div class = "one column">a</div>
-          <div class = "two columns">RESOURCE</div>
-          <div class = "three columns">ENERGY</div>
-          <div class = "three columns">WATER</div>
-          <div class = "three columns">CROWDSOURCE</div>
-        </div>
+        <section id = "data"> <!-- data change screen  -->
+          <div id = "dataCompare" class = "data row">
+            <div class = "one column">a</div>
+            <div class = "two columns">COMPARE</div>
+            <div class = "three columns">building</div>
+            <div class = "three columns">uc davis</div>
+            <div class = "three columns">california</div>
+          </div>
+          <div id = "dataResource" class = "data row">
+            <div class = "one column">a</div>
+            <div class = "two columns">RESOURCE</div>
+            <div class = "three columns">ENERGY</div>
+            <div class = "three columns">WATER</div>
+            <div class = "three columns">CROWDSOURCE</div>
+          </div>
 
-        <div id = "dataBreakdownTitle" class = "data row">
-          <div class = "one column">()</div>
-          <div class = "eight columns">BREAKDOWN</div>
-          <div class = "one column">()</div>
-        </div>
+          <div id = "dataBreakdownTitle" class = "data row">
+            <div class = "one column">()</div>
+            <div class = "eight columns">BREAKDOWN</div>
+            <div class = "one column">()</div>
+          </div>
+          <div id = "dataBreakdownAC" class = "data row">
+            <div class = "four columns">SCC</div>
+            <div class = "two columns">300</div>
+            <div class = "four columns">MRAK</div>
+            <div class = "two columns">180</div>
+          </div>
+          <div id = "dataBreakdownBD" class = "data row">
+            <div class = "four columns">Shields</div>
+            <div class = "two columns">90</div>
+            <div class = "four columns">ARC</div>
+            <div class = "two columns">230</div>
+          </div>
 
+        </section>
 
-        <div id = "dataBreakdownAC" class = "data row">
-          <div class = "four columns">SCC</div>
-          <div class = "two columns">300</div>
-          <div class = "four columns">MRAK</div>
-          <div class = "two columns">180</div>
-        </div>
-
-        <div id = "dataBreakdownBD" class = "data row">
-          <div class = "four columns">Shields</div>
-          <div class = "two columns">90</div>
-          <div class = "four columns">ARC</div>
-          <div class = "two columns">230</div>
-        </div>
+        <section id = "help">
+        </section>
 
 
 
@@ -92,5 +99,6 @@
     <script src="libs/velocity.min.js"></script>
     <!-- CUSTOM  -->   
     <script src="scripts/3d.js"></script>
+    <script src="scripts/UI.js"></script>
   </body> 
 </html>

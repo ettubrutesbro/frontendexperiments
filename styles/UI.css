@@ -18,7 +18,27 @@
 	text-align: center;
 }
 
-.columns, .column {
-	background-color: white;
+section{
+	display: none;
+}
+section#view .columns, section#view .column {
+	background-color: yellow;
 	text-align: center;
+}
+
+section#data .column, section#data .columns {
+	background-color: blue;
+}
+
+#viewnav {
+	background-color: yellow;
+}
+#talknav {
+	background-color: green;
+}
+#datanav {
+	background-color: blue;
+}
+#helpnav {
+	background-color: violet;
 }
