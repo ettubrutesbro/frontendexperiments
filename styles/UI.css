@@ -42,3 +42,36 @@ section#data .column, section#data .columns {
 #helpnav {
 	background-color: violet;
 }
+
+section#talk {
+	height: 15em;
+}
+
+section#talk .column, section#talk .columns{
+	background-color: green;
+	height: 100%;
+}
+section#talk input{
+	width: 100%;
+}
+
+section#talk ul {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+#convTimes {
+	text-align: right;
+}
+
+#stickerDrawer {	
+	border: 1px red solid;
+}
+
+#stickerDrawer .row {
+	height: 0;
+	overflow: hidden;
+}
+
+
+

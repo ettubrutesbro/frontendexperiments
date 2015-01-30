@@ -117,7 +117,7 @@
       seseme.add(pillargroup)
       scene.add (seseme)
 
-      updateValues(1,10,100)
+      updateValues(1,0,0)
       updateValues(2,0,0)
       updateValues(3,0,0)
       updateValues(4,0,0)
@@ -162,7 +162,10 @@
         // if(intersects.length > 0){ //intersection diagnostic: what's in front?
         //   console.log(intersects[0].object.name)
         // }
+      
 
+        //INTERACT functions
+        //INTERACT functions
         //INTERACT functions
         raycaster.setFromCamera(mouseLocation, camera)
         var intersects = raycaster.intersectObjects(pillargroup.children)
@@ -177,6 +180,8 @@
 
 
     function updateValues(index, change, duration){ //valarray[index] is updated,
+      // causing pillar[index] to move by change over duration
+      // causing pillar[index] to move by change over duration
       // causing pillar[index] to move by change over duration
 
       valarray[index-1] = {"value": change, "duration": duration}
