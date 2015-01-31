@@ -101,7 +101,11 @@
           </div>
 
           <div id = "voteDiv">
-
+            <div class = "u-full-width">OPTION 1</div>
+            <div class = "u-full-width">OPTION 2</div>
+            <div class = "u-full-width">OPTION 3</div>
+            <div class = "u-full-width">OPTION 4</div>
+            
           </div>
 
             <div id = "talkSwitcher" class = "row">
@@ -120,39 +124,40 @@
 
         <section id = "data"> <!-- data change screen  -->
         <!-- this should just be 3 tables.... -->
+          <table class = "u-full-width">
+            <tbody>
+             
+              <tr>
+                <td>COMPARE</td>
+                <td>UCD</td>
+                <td>CAMPUSES</td>
+                <td>PLANET</td>
+              </tr>
+              <tr>
+                <td>RESOURCE</td>
+                <td>ENERGY</td>
+                <td>WATER</td>
+                <td>PLANET</td>
+              </tr>
+            </tbody>
+          </table>
 
-          <div id = "dataCompare" class = "data row">
-            <div class = "one column">a</div>
-            <div class = "two columns">COMPARE</div>
-            <div class = "three columns">building</div>
-            <div class = "three columns">uc davis</div>
-            <div class = "three columns">california</div>
-          </div>
-          <div id = "dataResource" class = "data row">
-            <div class = "one column">a</div>
-            <div class = "two columns">RESOURCE</div>
-            <div class = "three columns">ENERGY</div>
-            <div class = "three columns">WATER</div>
-            <div class = "three columns">CROWDSOURCE</div>
-          </div>
-
-          <div id = "dataBreakdownTitle" class = "data row">
-            <div class = "one column">()</div>
-            <div class = "eight columns">BREAKDOWN</div>
-            <div class = "one column">()</div>
-          </div>
-          <div id = "dataBreakdownAC" class = "data row">
-            <div class = "four columns">SCC</div>
-            <div class = "two columns">300</div>
-            <div class = "four columns">MRAK</div>
-            <div class = "two columns">180</div>
-          </div>
-          <div id = "dataBreakdownBD" class = "data row">
-            <div class = "four columns">Shields</div>
-            <div class = "two columns">90</div>
-            <div class = "four columns">ARC</div>
-            <div class = "two columns">230</div>
-          </div>
+          <table>
+            <tbody>  
+              <tr>
+                <td>Building1</td>
+                <td>Building1Value</td>
+                <td>Building2</td>
+                <td>Building2Value</td>
+              </tr>
+              <tr>
+                <td>Building3</td>
+                <td>Building3Value</td>
+                <td>Building4</td>
+                <td>Building4Value</td>
+              </tr>
+            </tbody>
+          </table>
 
         </section>
 
@@ -171,6 +176,7 @@
     <!-- JAVASCRIPT LIBRARIES + CUSTOM SCRIPT SHOULD BE AT END OF DOCUMENT -->
     <script src="libs/three.min.js"></script> 
     <script src="libs/velocity.min.js"></script>
+    <script src="libs/velocity.ui.js"></script>
     <!-- CUSTOM  -->   
     <script src="scripts/3d.js"></script>
     <script src="scripts/UI.js"></script>
