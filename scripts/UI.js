@@ -8,6 +8,7 @@ var container = document.querySelector(".container")
 var navs = [].slice.call(nav.children) 
 
 var currentSection
+var htArray = ["2em","15em","13em"]
 
 
 
@@ -15,29 +16,28 @@ navs.forEach(function(ele,i,arr){
 	ele.addEventListener('click',function(){
 		// when clicking a nav button
 		var name = (ele.id).replace("nav", "")
-		var index = navs.indexOf(ele)
 		var section = document.getElementById(name)
-
 		if(currentSection==section){
+			console.log('clicked same one')
+			// if you clicked the same nav icon for what's already displayed
+			//this will need a special behavior if you are clicking VIEW
+		}else{
+			//if you clicked on a nav that isnt already expanded
+			var index = navs.indexOf(ele)
+			var sectionContainer = document.getElementById('sectionContainer')
+			
+			sectionContainer.appendChild(section)
+
+			if(currentSection==undefined){
+				section.style["display"] = "block"
+				Velocity(section,{height: htArray[index]})
+			} else if (currentSection!=undefined){
+				Velocity(currentSection,{height: 0},{duration: 300})
+				section.style["display"] = "block"
+				Velocity(section,{height: htArray[index]},{delay:100})
+			}
+			currentSection = section
 		}
-
-		var others = [].slice.call(document.getElementsByTagName('section'))
-		others.splice(index,1)
-
-		console.log(name + " " + index + " " + section)
-		//console.log(others)
-		console.log('section height is ' + section.style["height"])
-		Velocity(section,'transition.slideUpIn')
-		// if(currentSection!=undefined){
-		// 	Velocity(currentSection,'transition.slideUpDown')
-		// }
-		// section.style["display"] = "block"
-		// // fadeslidedown others, fadeslideup section
-		// others.forEach(function(ele,i,arr){
-		// 	ele.style["display"] = "none"
-		// })
-
-		//currentSection = section
 	})
 
 	function stickerDrawer(){
@@ -76,7 +76,7 @@ navs.forEach(function(ele,i,arr){
 				Velocity(target, {height: 0}, {duration: 500})
 				stickerDrawerOpen = false
 			}
-			Velocity(section, {height: "8em"}, {duration: 700})
+			Velocity(section, {height: "8em"}, {delay:200}, {duration: 500})
 
 			Velocity(voteButton, "transition.slideRightOut", {duration: 200})
 			Velocity(convButton, "transition.slideLeftIn", {delay: 1000})
@@ -84,6 +84,7 @@ navs.forEach(function(ele,i,arr){
 			setTimeout(function(){
 				Velocity(vote, "transition.slideLeftIn", {stagger: 150},{duration: 500})
 			},350)
+			htArray[1]="8em"
 		})
 		
 		convButton.addEventListener('click', function(){
@@ -97,6 +98,7 @@ navs.forEach(function(ele,i,arr){
 				})
 				Velocity(conv, "transition.slideRightIn", {stagger: 10})
 			},350)
+			htArray[1]="15em"
 			
 		
 		})	

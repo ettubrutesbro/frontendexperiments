@@ -20,6 +20,8 @@
 
 section{
 	display: none;
+	overflow: hidden;
+	height: 0;
 }
 section#view .columns, section#view .column {
 	background-color: yellow;
@@ -45,7 +47,6 @@ section#data td {
 }
 
 section#talk {
-	height: 15em;
 }
 
 section#talk .column, section#talk .columns{
