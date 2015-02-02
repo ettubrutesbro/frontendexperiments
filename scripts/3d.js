@@ -31,6 +31,11 @@
     //variables for INTERACT functions
     var raycaster
     var mouseLocation = new THREE.Vector2()
+    var clickTarget
+
+    //variables for ANIMATION
+    var currentPosition = {x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0}
+    var targetPosition = {x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0}
 
     //-----------------------------------------------
     // END GLOBAL VARIABLE DECLARATION
@@ -40,6 +45,7 @@
     //core functions setup scene and draw it every frame
     setup()
     animate() //render() is nested in here
+
 
     function setup(){
       camera.position.set( -20, 20, 20 )
@@ -56,26 +62,47 @@
       container.appendChild( renderer.domElement )
 
       //materials for seseme & orb (eventually need multiples for seseme?)
-      var sesememtl = new THREE.MeshNormalMaterial()
-      var orbmtl = new THREE.MeshNormalMaterial()
+      var sesememtl = new THREE.MeshPhongMaterial(0x0000ff)
+      //var sesememtl = new THREE.MeshNormalMaterial(0x0000ff)
+      var orbmtl = new THREE.MeshPhongMaterial(0xffffff)
+      var outlinemtl = new THREE.MeshBasicMaterial( { color: 0xff0000, linewidth: 4} )
+
+      //LIGHTING
+      light = new THREE.PointLight(0xffffff, 0.5)
+      light2 = new THREE.AmbientLight(0x1a1a1a, 0)
+      light.position.set(0,17,10)
+      scene.add(light)
+      scene.add(light2)
 
       // INTERACT setup -- event listener, initializing interact vars
       window.addEventListener( 'mousemove', onMouseMove, false)
+      window.addEventListener( 'mouseup', onMouseUp, false)
       mouseLocation = { x:0, y:0, z:1 }
       raycaster = new THREE.Raycaster()
+
+      //outline attempts
+
+      
      
 
       // EXTERNAL LOADING - getting .js 3d models into the canvas
       loader.load("assets/pedestal.js", function(geometry,evt){
+
         pedestal = new THREE.Mesh(geometry, sesememtl)
         pedestal.applyMatrix( new THREE.Matrix4().makeTranslation(1.5, 0, 1))
         pedestal.scale.set(0.5,0.5,0.5)
         pedestal.name = "pedestal"
         pedestal.overdraw = true
-        seseme.add (pedestal)
+        seseme.add(pedestal)
+
       }) 
 
       loader.load("assets/pillarA.js", function(geometry,evt){
+
+        // var outTgt = geometry.vertices
+         // var outlineGeometry = new THREE.Geometry()
+         // outlineGeometry.vertices.push(outTgt[2], outTgt[3], outTgt[0], outTgt[8])
+
         pillar1 = new THREE.Mesh(geometry, sesememtl)
         pillar1.applyMatrix( new THREE.Matrix4().makeTranslation( -5, 0, -5 ) )
         pillar1.scale.set(0.5,0.5,0.5)
@@ -107,6 +134,7 @@
         pillar4.overdraw = true
         pillar4.name = "pillar4"
         pillargroup.add(pillar4)
+
       })
 
       //the orb is generated here (adjust segments for smooth)
@@ -117,16 +145,16 @@
       seseme.add(pillargroup)
       scene.add (seseme)
 
-      updateValues(1,0,0)
-      updateValues(2,0,0)
-      updateValues(3,0,0)
-      updateValues(4,0,0)
+      updateValues(1,10,100)
+      updateValues(2,5,30)
+      updateValues(3,9,90)
+      updateValues(4,0,80)
     
 
       // updateValues(A,X,Y) targets pillar A, moves it X, over Y time (ms)
       // eventually, we'll query server for currentScale and currentMetric,
       // then call updateValues to all 4 pillars
-    }
+    } //end setup
 
     function animate(){ //put 3d animations here
         requestAnimationFrame( animate )
@@ -149,7 +177,15 @@
             valarray[i].value=0
           }
         })
-      } // end setup
+
+        TWEEN.update()
+        //seseme.rotation.y = 
+
+     
+
+      
+
+      } // end animate
 
     function render() { //put frame-by-frame checks and operations here
       //such as RENDERING or checking
@@ -167,8 +203,7 @@
         //INTERACT functions
         //INTERACT functions
         //INTERACT functions
-        raycaster.setFromCamera(mouseLocation, camera)
-        var intersects = raycaster.intersectObjects(pillargroup.children)
+     
 
     } // end render
 
@@ -177,6 +212,40 @@
       mouseLocation.x = ( evt.clientX / window.innerWidth ) * 2 - 1;
       mouseLocation.y = - ( evt.clientY / window.innerHeight ) * 2 + 1;
      } // end onMouseMove
+
+     function onMouseUp(evt){
+      raycaster.setFromCamera(mouseLocation, camera)
+   
+      var intersects = raycaster.intersectObjects(pillargroup.children)
+      console.log('moused up on ' + intersects[0].object.name)
+
+      //prototype seseme rotation script
+      //get current rotation (global), set target based on selection 
+      //(local) [corresponding arrays], new tween b/w rotation/target,
+      //then outside functions for tween.onUpdate etc.
+ 
+     // if mouseUp'd over a pillar: 
+      var index = (intersects[0].object.name).replace('pillar','') 
+      var rotationTargetArray = [0, -90, 90, -180]
+      console.log(rotationTargetArray[index-1])
+
+      targetPosition.ry = rotationTargetArray[index-1]*(Math.PI / 180)
+
+
+      var tween = new TWEEN.Tween(currentPosition)
+
+      var update = function(){
+        scene.rotation.y = currentPosition.ry
+        console.log(currentPosition.ry)
+      }
+
+      tween.to(targetPosition,750) 
+      tween.easing(TWEEN.Easing.Quadratic.Out)
+      tween.onUpdate(update)
+
+      tween.start()
+
+     }
 
 
     function updateValues(index, change, duration){ //valarray[index] is updated,
@@ -189,5 +258,9 @@
 
     }
 
+   function lineDraw(){
+    
+
+   }
 
     

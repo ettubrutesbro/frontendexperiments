@@ -34,7 +34,7 @@ navs.forEach(function(ele,i,arr){
 			} else if (currentSection!=undefined){
 				Velocity(currentSection,{height: 0},{duration: 300})
 				section.style["display"] = "block"
-				Velocity(section,{height: htArray[index]},{delay:100})
+				Velocity(section,{height: htArray[index]},{delay:0})
 			}
 			currentSection = section
 		}
